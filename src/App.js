@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+// App.js
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Login from './components/Login/Login';
+import Registro from './pages/Registro';
+import ListaTareas from './pages/ListaTareas';
+import { ToastContainer } from 'react-toastify';
+import { AuthProvider } from './Context/AuthContext';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <ToastContainer/>
+      <Routes>
+        <Route path="/" element={<AuthProvider><Login /></AuthProvider>} />
+        <Route path="/registro" element={ <Registro />} />
+        <Route path="/listaTareas" element={<AuthProvider><ListaTareas /></AuthProvider>} />
+      </Routes>
+    </Router>
   );
-}
+};
 
 export default App;
